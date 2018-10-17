@@ -41,13 +41,13 @@ func (repo *taskRepository) FindByID(id int) (*task.Task, error) {
 	return nil, task.ErrUnknownTask
 }
 
-func (repo *taskRepository) FindByListID(list_id int) []*task.Task {
+func (repo *taskRepository) FindByCategoryID(category_id int) []*task.Task {
 	repo.mtx.RLock()
 	defer repo.mtx.RUnlock()
 
 	t := make([]*task.Task, 0)
 	for _, val := range repo.tasks {
-		if val.ListID == list_id {
+		if val.CategoryID == category_id {
 			t = append(t, val)
 		}
 	}

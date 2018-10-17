@@ -11,7 +11,7 @@ type categoryRepository struct {
 	categories map[int]*category.Category
 }
 
-func NewCategoryReposiory() category.Repository {
+func NewCategoryRepository() category.Repository {
 	return &categoryRepository{
 		categories: make(map[int]*category.Category),
 	}
@@ -28,7 +28,7 @@ func (repo *categoryRepository) FindAll() []*category.Category {
 	return c
 }
 
-func (repo *categoryRepository) FundByID(id int) (*category.Category, error) {
+func (repo *categoryRepository) FindByID(id int) (*category.Category, error) {
 	repo.mtx.RLock()
 	defer repo.mtx.RUnlock()
 
